@@ -6,11 +6,14 @@ class Wall : public Object {
 private:
 
 public:
+	
 	//WorldOutliner worldOutliner;
-	Wall() {
+	Wall()
+	{
 
 	}
-	Wall(string name) {
+	Wall(FPosition p, string name, Area area) : Object(p, name, "бс",area, "Wall")
+	{
 	}
 	Wall(FPosition p, string name, string shape, string Type) : Object(p, name, shape, Type)
 	{
