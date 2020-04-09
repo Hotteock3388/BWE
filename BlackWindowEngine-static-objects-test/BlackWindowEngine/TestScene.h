@@ -23,8 +23,8 @@ public:
 	{
 		worldOutliner.AddObject(new Player(FPosition({ 2,28 }), "Player", "ก่", "Player"));
 		worldOutliner.AddObject(new PushTrap(FPosition({ 15, 15 }), "PushTrap_1", "@@", "PushTrap"));
-		worldOutliner.AddObject(new MovingTrap(FPosition({ 20, 20 }), "MovingTrap_1", "HH", "", "MovingTrap"));
-		worldOutliner.AddObject(new MovingTrap(FPosition({ 10, 20 }), "MovingTrap_2", "HH", "ก็", "MovingTrap"));
+		worldOutliner.AddObject(new MovingTrap(FPosition({ 20, 20 }), "MovingTrap_1", "HH", "ก็", "MovingTrap"));
+		worldOutliner.AddObject(new MovingTrap(FPosition({ 25, 20 }), "MovingTrap_2", "HH", "ก็", "MovingTrap"));
 		worldOutliner.AddObject(new MovingTrap(FPosition({ 28, 28 }), "MovingTrap_3", "VV", "ก่", "MovingTrap"));
 		worldOutliner.AddObject(new MovingTrap(FPosition({ 28, 14 }), "MovingTrap_4", "VV", "ก่", "MovingTrap"));
 		worldOutliner.AddObject(new MovingTrap(FPosition({ 2, 2 }), "MovingTrap_5", "ขศ", "ก็", "MovingTrap"));
