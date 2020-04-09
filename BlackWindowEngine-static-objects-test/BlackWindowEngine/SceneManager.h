@@ -21,11 +21,11 @@ public:
 		worldOutliner = WorldOutliner();
 	};
 	
-	virtual void Create() = 0;			//Called when the Application is first created.
-	virtual void Render(float dt) = 0;
-	virtual void Resize(int x, int y) = 0;
-	virtual void Input(float dt) = 0;
-	virtual void Pause() = 0;			//Stop Game
+	virtual void Create(){};			//Called when the Application is first created.
+	virtual void Render(float dt){};
+	virtual void Resize(int x, int y){};
+	virtual void Input(float dt){};
+	virtual void Pause() {};			//Stop Game
 	virtual ~SceneManager() {};				//Called when this Game should release all resources.
 
 	void UploadMap(Object* o)
@@ -53,4 +53,8 @@ public:
 		return worldOutliner;
 	}
 
+	void SceneChange(SceneManager scene)
+	{
+		
+	}
 };
