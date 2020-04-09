@@ -7,13 +7,14 @@
 #include "Wall.h"
 #include "PushTrap.h"
 #include "MovingTrap.h"
+#include "HoScene.h"
 using namespace std;
 
 class TestScene : public SceneManager
 {
 private:
 public:
-	
+	int num = 0;
 	int Size = 30;
 	TestScene() : SceneManager()
 	{
@@ -37,8 +38,11 @@ public:
 		worldOutliner.AddObject(new Wall(FPosition({ 10,2}), "Vwall1", Area({1,7})));
 		worldOutliner.AddObject(new Wall(FPosition({ 7,8}), "Vwall2", Area({1,7})));
 		
+
 		
 		Map_Make();
+
+		
 	}
 
 	void Render(float dt)
@@ -47,7 +51,13 @@ public:
 		
 		//dynamic_cast<Player*>(worldOutliner.FindObject("canon1"))->getW();
 
-		
+
+		num++;
+		if (num > 200)
+		{
+			throw new HoScene;
+		}
+
 		
 		
 	}
@@ -63,7 +73,7 @@ public:
 	{
 
 	}
-	~TestScene() 
+	~TestScene()
 	{
 
 	}

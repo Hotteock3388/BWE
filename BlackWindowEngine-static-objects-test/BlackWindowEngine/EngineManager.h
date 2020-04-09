@@ -27,76 +27,112 @@ public:
 	EngineManager(SceneManager* scene)
 	{
 		this->scene = scene;
-		Game();
-	}
-	void Game()
-	{
-		scene->Create();
-		scene->mapPointer->Print();
 
-		 
-		 
-		
-		while (true)
+		while(true)
 		{
-			time.StartMeasure();
+			int condition = Game();
+			if (condition == -1)
+			{
+				Game();
+			}
+			else if(condition == 0)
+			{
+				return;
+			}
+		}
+	}
 
-
-			scene->mapPointer->CopyCurrentMapANDRemoveCurrentMap();
+	int Game()
+	{
+		try
+		{
+			system("cls");
+			scene->Create();
+			scene->mapPointer->Print();
+			Print_Map();
 
 			
-			//Game
-			scene->Render(time.deltaTime);
-			//end
-
-
-			// 충돌검사
-			for(auto my : scene->worldOutliner.GetObjects())
+			while (true)
 			{
-				for(auto other : scene->worldOutliner.GetObjects())
-				{
-					if(my != other)
-					{
-						Position myP = PositionTools::FPtoIP(my->GetPosition());
-						Area myA = my->GetArea();
-						Position otherP = PositionTools::FPtoIP(
-							other->GetPosition());
-						Area otherA = other->GetArea();
+				time.StartMeasure();
 
-						if(myP.x + myA.width > otherP.x && myP.x < otherP.x + otherA.width)
+
+				scene->mapPointer->CopyCurrentMapANDRemoveCurrentMap();
+
+
+				//Game
+				scene->Render(time.deltaTime);
+				//end
+
+
+				BoomCheck();
+
+				Work();
+
+				Print_Map();
+
+
+
+				time.EndMeasure();
+			}
+		}
+		catch (SceneManager* new_Scene)
+		{
+
+			scene = new_Scene;
+			return -1;
+		}
+	}
+
+	void BoomCheck()
+	{
+		// 충돌검사
+		for (auto my : scene->worldOutliner.GetObjects())
+		{
+			for (auto other : scene->worldOutliner.GetObjects())
+			{
+				if (my != other)
+				{
+					Position myP = PositionTools::FPtoIP(my->GetPosition());
+					Area myA = my->GetArea();
+					Position otherP = PositionTools::FPtoIP(
+						other->GetPosition());
+					Area otherA = other->GetArea();
+
+					if (myP.x + myA.width > otherP.x && myP.x < otherP.x + otherA.width)
+					{
+						if (myP.y + myA.height > otherP.y && myP.y < otherP.y + otherA.height)
 						{
-							if(myP.y + myA.height > otherP.y && myP.y < otherP.y + otherA.height)
-							{
-								my->OnCollision(other);
-							}
+							my->OnCollision(other);
 						}
-						/*if(PositionTools::IsEqual(my->GetPosition(),other->GetPosition()))
-						{
-						}*/
 					}
 				}
 			}
+		}
+	}
 
-			//Work
-			for(auto o : scene->worldOutliner.GetObjects())
-			{
-				o->Work();
-			}
-			scene->SceneManager::UploadMap(scene->worldOutliner.GetObjects());
-
-			vector<Position> v = scene->mapPointer->ModifiedMap();
-			for (Position i : v)
-			{
-				Tools::cersorMoveTo({ i.x, i.y });
-				cout << scene->mapPointer->GetPartOfMap({ i.x, i.y });
-			}
-			Tools::backCersor();
-
-
-			time.EndMeasure();
+	void Work()
+	{
+		//Work
+		for (auto o : scene->worldOutliner.GetObjects())
+		{
+			o->Work();
 		}
 
 	}
 
+	void Print_Map()
+	{
+		scene->SceneManager::UploadMap(scene->worldOutliner.GetObjects());
+
+		vector<Position> v = scene->mapPointer->ModifiedMap();
+		for (Position i : v)
+		{
+			Tools::cersorMoveTo({ i.x, i.y });
+			cout << scene->mapPointer->GetPartOfMap({ i.x, i.y });
+		}
+		Tools::backCersor();
+
+	}
 
 };

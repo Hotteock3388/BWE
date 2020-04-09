@@ -26,7 +26,10 @@ public:
 	virtual void Resize(int x, int y) = 0;
 	virtual void Input(float dt) = 0;
 	virtual void Pause() = 0;			//Stop Game
-	virtual ~SceneManager() {};				//Called when this Game should release all resources.
+	virtual ~SceneManager()				//Called when this Game should release all resources.
+	{
+		delete mapPointer;
+	};				
 
 	void UploadMap(Object* o)
 	{
@@ -53,4 +56,8 @@ public:
 		return worldOutliner;
 	}
 
+	void ChangeScene(SceneManager* scene)
+	{
+		throw scene;
+	}
 };

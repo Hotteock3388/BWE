@@ -5,6 +5,7 @@
 
 
 #include "EngineManager.h"
+#include "HoScene.h"
 #include "TestScene.h"
 
 
