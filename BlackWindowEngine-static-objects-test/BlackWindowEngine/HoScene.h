@@ -16,10 +16,10 @@ class HoScene : public SceneManager
 private:
 public:
 	
-	int Size = 30;
+	int Size = 40;
 	HoScene() : SceneManager()
 	{
-		mapPointer = new Map(30, 30);
+		mapPointer = new Map(Size, Size);
 	};
 	void Create()
 	{
@@ -56,10 +56,10 @@ public:
 	}
 	void Map_Make()
 	{
-		//worldOutliner.AddObject(new Wall(FPosition({ 0,0 }), "Wall_Top", "бс", Area({ Size, 1 }), "Wall"));
-		//worldOutliner.AddObject(new Wall(FPosition({ 0,0 }), "Wall_Left", "бс", Area({ 1, Size }), "Wall"));
-		//worldOutliner.AddObject(new Wall(FPosition({ (float)Size - 1, 0 }), "Wall_Right", "бс", Area({ 1, Size }), "Wall"));
-		//worldOutliner.AddObject(new Wall(FPosition({ 0, (float)Size - 1 }), "Wall_Bottom", "бс", Area({ Size, 1 }), "Wall"));
+		worldOutliner.AddObject(new Wall(FPosition({ 0,0 }), "Wall_Top", "бс", Area({ Size, 1 }), "Wall"));
+		worldOutliner.AddObject(new Wall(FPosition({ 0,0 }), "Wall_Left", "бс", Area({ 1, Size }), "Wall"));
+		worldOutliner.AddObject(new Wall(FPosition({ (float)Size - 1, 0 }), "Wall_Right", "бс", Area({ 1, Size }), "Wall"));
+		worldOutliner.AddObject(new Wall(FPosition({ 0, (float)Size - 1 }), "Wall_Bottom", "бс", Area({ Size, 1 }), "Wall"));
 	}
 
 };

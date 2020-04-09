@@ -56,6 +56,10 @@ public:
 	{
 		return objects;
 	}
+	~WorldOutliner()
+	{
+		objects.clear();
+	}
 };
 
 vector<Object*> WorldOutliner::objects;

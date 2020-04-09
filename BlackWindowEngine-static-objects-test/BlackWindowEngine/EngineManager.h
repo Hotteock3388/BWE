@@ -10,7 +10,7 @@
 #include "Tools.h"
 
 using namespace std;
-
+#include "HoScene.h"
 
 class EngineManager
 {
@@ -28,18 +28,17 @@ public:
 	{
 		this->scene = scene;
 
-		while(true)
-		{
+			Execution:
 			int condition = Game();
+		
 			if (condition == -1)
 			{
-				Game();
+				goto Execution;
 			}
 			else if(condition == 0)
 			{
 				return;
-			}
-		}
+			}		
 	}
 
 	int Game()
@@ -78,7 +77,7 @@ public:
 		}
 		catch (SceneManager* new_Scene)
 		{
-
+			delete scene;
 			scene = new_Scene;
 			return -1;
 		}
